@@ -78,7 +78,7 @@
                     <div class="box">
                         <h1>Student Verified</h1>
                         <span><i class="fa-regular fa-circle-check"></i></span> <br>
-                        <p>08/08/2025</p>
+                        <p id="current-date"></p>
                         <button onclick="closePopup()">close</button>
                     </div>
                 </div>
@@ -91,6 +91,16 @@
 <script src="https://cdn.jsdelivr.net/npm/html5-qrcode/minified/html5-qrcode.min.js"></script>
 
 <script>
+    // Get the current date
+    const today = new Date();
+
+    // Format the date as dd mm yyyy
+    const formattedDate = `${today.getDate().toString().padStart(2, '0')} ${(
+  today.getMonth() + 1
+).toString().padStart(2, '0')} ${today.getFullYear()}`;
+
+    // Display the formatted date in the paragraph with id="current-date"
+    document.getElementById("current-date").textContent = formattedDate;
     let qrReader = null; // Declare the qrReader variable globally so we can stop it
 
     // Ensure Html5Qrcode is available
@@ -136,7 +146,7 @@
                 headers: {
                     'Content-Type': 'application/json',
                     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')
-                    .content, // CSRF token for security
+                        .content, // CSRF token for security
                 },
                 body: JSON.stringify({
                     id: studentId

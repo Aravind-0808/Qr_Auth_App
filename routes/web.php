@@ -25,6 +25,7 @@ Route::get('/dashboard', function () {
     $qrCode = QrCode::size(200)->generate(json_encode($qrData));
 
     // Pass the $user and $qrCode to the dashboard view
+    
     return view('dashboard', compact('user', 'qrCode'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
